@@ -1,2 +1,2 @@
 ## Sobre
-Projeto de blog para desenvolvedores de software, construído em PHP.
+Projeto de blog para desenvolvedores de software, construído com PHP.
