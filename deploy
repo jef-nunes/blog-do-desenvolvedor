@@ -1,0 +1,61 @@
+#!/bin/bash
+
+# Script com a finalidade de copiar arquivos de um projeto PHP 
+# para dentro do diretório DocumentRoot (/var/www/html)
+
+# Para funcionar este script deve:
+# 1. Estar localizado na raiz do diretório do projeto
+# 2. Ser chamado pelo usuário root
+
+# Interromper em caso do diretório DocumentRoot não existir
+if [ ! -d "/var/www/html" ]; then
+  echo "Erro: Diretório /var/www/html não existe."
+  exit 1
+fi
+
+# Se for chamado pelo root, prosseguir
+if [[ "${UID}" -eq 0 ]]
+then
+    # O path deste script
+    PATH_DESTE_SCRIPT="$(readlink -f "$0")"
+    # O nome deste script
+    NOME_DESTE_SCRIPT="$(basename "$0")"
+    # O diretório do projeto (supondo que este script esta na raiz do projeto)
+    DIR_PROJETO="$(dirname "$PATH_DESTE_SCRIPT")"
+
+    # Criar diretório temporário
+    DIR_TMP=$(mktemp -d)
+
+    echo "[Iniciando o deploy do projeto PHP]"
+
+    echo "Diretório do projeto: $DIR_PROJETO"
+    echo "Diretório temporário: $DIR_TMP"
+    
+    # Copiar tudo para o diretório temporário
+    cp -a "$DIR_PROJETO"/. "$DIR_TMP/"
+
+    # Remover arquivos indesejados no diretório temporário
+    echo "Filtrando arquivos em $DIR_TMP ..."
+    rm -f "$DIR_TMP/$NOME_DESTE_SCRIPT"
+    # Arquivos de desenvolvimento
+    rm -f "$DIR_TMP/.gitignore"
+    rm -f "$DIR_TMP/README.md"
+    rm -rf "$DIR_TMP/.git"
+    rm -f "$DIR_TMP/LICENSE"
+
+    # Limpar o diretório DocumentRoot
+    echo "Limpando o diretório /var/www/html ..."
+    rm -rf /var/www/html/* /var/www/html/.[!.]* /var/www/html/..?*
+    # Copiar do diretório temporário para o diretório DocumentRoot
+    echo "Copiando de $DIR_TMP para /var/www/html ..."
+    cp -a "$DIR_TMP/." /var/www/html/
+
+    # Limpar o diretório temporário
+    echo "Removendo o diretório $DIR_TMP ..."
+    rm -rf "$DIR_TMP"/* "$DIR_TMP"/.[!.]* "$DIR_TMP"/..?*
+
+    echo "Fim."
+else
+    echo "Erro - O script deve ser executado com privilégios root"
+    exit 1
+fi
