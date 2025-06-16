@@ -7,7 +7,7 @@
     font-style: normal;
 }
 
-/* Estilo basico */
+/* Estilos base */
 *{
     font-family: "Electrolize";
     padding: 0;
@@ -27,9 +27,10 @@ body{
     justify-content: center;
     color: rgb(255, 255, 255);
     background-color: rgb(0, 0, 0);
+    overflow-x: hidden;
+    padding-bottom: 100px;
 }
 
-/* Cabeçalho */
 header{
     width: 100vw;
     background-color: rgb(13, 19, 22);
@@ -43,6 +44,19 @@ header{
     padding-bottom: 20px;
     border-bottom: 2px solid rgb(26, 38, 44);
 }
+
+footer{
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    text-align: center;
+    border-top: 2px solid rgb(26, 38, 44);
+    background-color: rgb(13, 19, 22);
+    color: whitesmoke;
+    padding: 50px 0;
+}
+
+/* Header - Logo */
 
 #logo{
     position: absolute;
@@ -74,12 +88,13 @@ header{
     opacity: 1;
 }
 
+/* Header - Navbar */
 #nav-bar{
     display: flex;
     align-items: center;
     justify-content: center;
     background-color: rgb(14, 27, 34);
-    border: 2px solid rgb(40, 123, 134);
+    border: 2px solid rgb(43, 83, 88);
     border-radius: 5px;
 }
 
@@ -101,22 +116,17 @@ header{
     font-size: 30px;
 }
 
-/* Principal */
+/* Home / Prévias de posts */
 
-main{
-    margin-bottom: 250px;
+#home-main{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-bottom: 250px;
 }
 
-.post-img{
-    height: 600px;
-    width: 900px;
-}
-
-#titulo-container{
+#home-main-titulo-container{
     text-align: center;
     margin-top: 100px;
     padding: 10px;
@@ -125,18 +135,23 @@ main{
     width: fit-content;
 }
 
-#titulo-container h1{
+#home-main-titulo-container img{
+    width: 300px;
+    height: 300px;
+}
+
+#home-main-titulo-container h1{
     color: rgb(255, 255, 255);
     font-size: 50px;
 }
 
-#titulo-container p{
+#home-main-titulo-container p{
     margin-top: 10px;
     font-size: 20px;
     color: rgb(194, 194, 194);
 }
 
-#posts-container {
+#previa-posts-container {
     max-width: 1200px;
     margin: 0 auto;
     margin-top: 30px;
@@ -144,7 +159,7 @@ main{
     flex-wrap: wrap;
 }
 
-.post-box{
+.previa-post-box{
     background-color: rgb(13, 19, 22);
     border: 2px solid rgb(26, 38, 44);
     width: 700px;
@@ -156,47 +171,113 @@ main{
     margin-top: 70px;
 }
 
-.post-img{
+.previa-post-img{
     border: 2px solid rgb(68, 68, 68);
     width:350px;
     height:250px;
 }
 
-.post-titulo{
+.previa-post-titulo{
     margin-top: 10px;
     width: 400px;
 }
 
-.post-titulo a{
+.previa-post-titulo a{
     opacity: 0.9;
-    color: rgb(188, 250, 153);
+    color: rgb(132, 241, 255);
     transition: .5s;
     font-size: 35px;
 }
 
-.post-titulo a{
+.previa-post-titulo a{
     text-decoration: none;
     font-size: 33px;
 }
 
-.post-titulo a:hover{
+.previa-post-titulo a:hover{
     opacity: 1;
     font-size: 35px;
 }
 
-.post-desc{
+.previa-post-desc{
     margin-top: 10px;
     font-size: 20px;
 }
-.post-tags-container{
+.previa-post-tags-container{
     display: flex;
     flex-direction: row;
     align-items: center;
     gap: 10px;
     margin-top: 10px;
 }
-.post-tags-container p{
+.previa-post-tags-container p{
     font-size: 20px;
+}
+.previa-post-tag{
+    color: rgb(115, 215, 255);
+    border: 1px solid rgb(57, 118, 146);
+    background-color: rgb(26, 43, 48);
+    border-radius: 15px;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    text-decoration: none;
+}
+
+/* Posts */
+#post-titulo-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+}
+#post-titulo{
+    text-align: center;
+    margin-top: 100px;
+    width: 700px;
+}
+#post-desc{
+    margin-top: 30px;
+    width: 500px;
+    text-align: center;
+}
+#post-img{
+    border: 2px solid rgb(68, 68, 68);
+    width:450px;
+    height:350px;
+    margin-top: 30px;
+}
+#post-main{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 70px;
+}
+#post-aside{
+    margin-bottom: 70px;
+}
+.post-subtitulo{
+    margin-top: 30px;
+}
+.post-paragrafo{
+    margin-top: 30px;
+    width: 800px;
+}
+#post-tags-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    margin-top: 30px;
+}
+#post-tags-container ul{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+#post-tags-container ul li{
+    list-style: none;
 }
 .post-tag{
     color: rgb(115, 215, 255);
@@ -209,16 +290,8 @@ main{
     text-decoration: none;
 }
 
-/* Rodapé */
-
-footer{
-    width: 100%;
-    position: absolute;
-    bottom: 0;
-    text-align: center;
-    border-top: 2px solid rgb(26, 38, 44);
-    background-color: rgb(13, 19, 22);
-    color: whitesmoke;
-    padding: 50px 0;
+.post-logo-linguagem{
+    width: 72px;
+    height: 72px;
+    margin-top: 30px;
 }
-
